@@ -509,7 +509,7 @@ packages:
   depends:
   - python
   input:
-    hash: 3759c1e0988c6fb868f8a1e38ebc84942c95a03620ec448f1fd3999a46af5281
+    hash: 9354c7c8c8d3f0087ba21604cd7c8eb636988925b59238f28acd713a7b9157ab
     globs:
     - pyproject.toml
 - conda: https://prefix.dev/conda-forge/linux-64/ncurses-6.5-h2d0b736_3.conda
