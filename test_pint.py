@@ -36,20 +36,24 @@ test_unit_pow(Unit("m"))
 
 print(isinstance(Unit("m"), mt.Unit))
 
-# def test_unit(q: mt.Quantity) -> None:
-#     print(q.unit)
+def test_unit(q: mt.Quantity) -> None:
+    print(q.unit)
 
-# def test_value(q: mt.Quantity) -> None:
-#     print(q.value)
-
-
-# test_unit(Quantity(1, "m"))
-# test_value(Quantity(1, "m"))
+def test_value(q: mt.Quantity) -> None:
+    print(q.value)
 
 
-# def test_op(q: mt.Quantity, op) -> None:
-#     print(op(q, q))
+test_unit(Quantity(1, "m"))
+test_value(Quantity(1, "m"))
 
+print(isinstance(Quantity(1, "m"), mt.Quantity))
+
+def test_op(q: mt.Quantity, op) -> None:
+    print(op(q, q))
+
+
+# for op in [ops.eq]:
+#     test_op(Quantity(1, "m"), op)
 
 # for op in [ops.eq, ops.ne, ops.lt, ops.le, ops.gt, ops.ge]:
 #     test_op(Quantity(1, "m"), op)

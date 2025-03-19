@@ -38,3 +38,4 @@ class Quantity[V, U: Unit](Protocol):
     ### Dunder Methods
 
     def __eq__[B](self: "Quantity[V, U]", other: "Quantity[op.CanEq[V, B], U]", /) -> B: ...
+# 
