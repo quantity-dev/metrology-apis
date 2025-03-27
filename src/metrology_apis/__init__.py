@@ -9,32 +9,23 @@ __all__ = ["__version__", "Dimension", "Quantity", "Unit"]
 
 
 @runtime_checkable
-class MetrologyNamespace[Q: Quantity, U: Unit, D: Dimension](Protocol):
+class MetrologyNamespace[Q: Quantity[V, U, D], V, U: Unit[D], D: Dimension](Protocol):
 
     @staticmethod
     def asdimension(obj: str | D) -> D: ...
 
     @staticmethod
-    def asunit(obj) -> U[D]: ...
+    def asunit(obj: str | U) -> U: ...
 
     @staticmethod
-    def asquantity(obj: V, unit: obj) -> Q[V, U[D]]: ...
-
-    @property
-    def Dimension(self) -> D: ...
-
-    @property
-    def Unit(self) -> U: ...
-
-    @property
-    def Quantity(self) -> Q: ...
+    def asquantity(obj: Q | V, *, unit: U) -> Q: ...
 
 
 @runtime_checkable
 class Dimension(Protocol):
-    def __metrology_namespace__(
+    def __metrology_namespace__[Q: Quantity, U: Unit](
         self, /, *, api_version: str | None = None
-    ) -> MetrologyNamespace:
+    ) -> MetrologyNamespace[Q, U, Self]:
         """
         Returns an object that has all the metrology API functions on it.
         Parameters
@@ -56,10 +47,10 @@ class Dimension(Protocol):
 
 
 @runtime_checkable
-class Unit(Protocol):
-    def __metrology_namespace__(
+class Unit[D: Dimension](Protocol):
+    def __metrology_namespace__[Q: Quantity](
         self, /, *, api_version: str | None = None
-    ) -> MetrologyNamespace:
+    ) -> MetrologyNamespace[Q, Self, D]:
         """
         Returns an object that has all the metrology API functions on it.
         Parameters
@@ -73,7 +64,7 @@ class Unit(Protocol):
         """
 
     @property
-    def dimension(self) -> Dimension: ...
+    def dimension(self) -> D: ...
 
     def __mul__(self, other: Self, /) -> Self: ...
     def __truediv__(self, other: Self, /) -> Self: ...
@@ -85,10 +76,10 @@ class Unit(Protocol):
 
 
 @runtime_checkable
-class Quantity[V, U: Unit](Protocol):
+class Quantity[V, U: Unit[D], D: Dimension](Protocol):
     def __metrology_namespace__(
         self, /, *, api_version: str | None = None
-    ) -> MetrologyNamespace:
+    ) -> MetrologyNamespace[Self, U, D]:
         """
         Returns an object that has all the metrology API functions on it.
         Parameters
