@@ -23,7 +23,7 @@ class MetrologyNamespace[Q: Quantity[V, U, D], V, U: Unit[D], D: Dimension](Prot
 
 @runtime_checkable
 class Dimension(Protocol):
-    def __metrology_namespace__[Q: Quantity, U: Unit](
+    def __metrology_namespace__[Q: Quantity[V, U, Self], V, U: Unit[Self]](
         self, /, *, api_version: str | None = None
     ) -> MetrologyNamespace[Q, U, Self]:
         """
@@ -100,4 +100,4 @@ class Quantity[V, U: Unit[D], D: Dimension](Protocol):
     ### Dunder Methods
 
     @override
-    def __eq__[B](self: "Quantity[V, U]", other: "Quantity[op.CanEq[V, B], U]", /) -> B: ...  # type: ignore[override]  # pyright: ignore[reportIncompatibleMethodOverride]
+    def __eq__[B](self: "Quantity[V, U, D]", other: "Quantity[op.CanEq[V, B], U, D]", /) -> B: ...  # type: ignore[override]  # pyright: ignore[reportIncompatibleMethodOverride]
