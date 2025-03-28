@@ -788,7 +788,7 @@ packages:
   depends:
   - python
   input:
-    hash: 32013f31bef9004d6bef71b20df05282e87aba75a66432bfae782e261b1e3b7b
+    hash: 2c6b85c2c0ca83e1a3e746d3c620e8bcb5ff1f4e41d4f2788da63105720f310d
     globs:
     - pyproject.toml
 - conda: https://prefix.dev/conda-forge/noarch/mypy_extensions-1.0.0-pyha770c72_1.conda
