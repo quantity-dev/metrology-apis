@@ -41,6 +41,6 @@ class Quantity[V, U: Unit](Protocol):
     ### Dunder Methods
 
     @override
-    def __eq__[B](
+    def __eq__[B](  # type: ignore[override]  # pyright: ignore[reportIncompatibleMethodOverride]
         self: "Quantity[V, U]", other: "Quantity[op.CanEq[V, B], U]", /
-    ) -> B: ...  # type: ignore[override]  # pyright: ignore[reportIncompatibleMethodOverride]
+    ) -> B: ... 
