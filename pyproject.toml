@@ -12,8 +12,8 @@ requires = ["hatchling"]
 
 [tool.pixi.workspace]
 channels = [
-    "https://prefix.dev/pixi-build-backends",
-    "https://prefix.dev/conda-forge",
+  "https://prefix.dev/pixi-build-backends",
+  "https://prefix.dev/conda-forge",
 ]
 platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
 preview = ["pixi-build"]
@@ -23,13 +23,20 @@ metrology-apis = { path = "." }
 optype = ">=0.9.2,<0.10"
 
 [tool.pixi.feature.lint.dependencies]
+pre-commit = "*"
+pre-commit-hooks = "*"
+taplo = "*"
+ruff = "*"
+mdformat = "*"
+mdformat-ruff = "*"
 basedpyright = "*"
 basedmypy = "*"
 
 [tool.pixi.feature.lint.tasks]
 pyright = "basedpyright"
 mypy = "mypy"
-lint = { depends-on = ["mypy", "pyright"] }
+pre-commit = "pre-commit run"
+lint = { depends-on = ["pre-commit", "mypy", "pyright"] }
 
 [tool.pixi.environments]
 lint = ["lint"]
