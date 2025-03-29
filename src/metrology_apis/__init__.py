@@ -32,14 +32,25 @@ class Dimension(Protocol):
     ) -> MetrologyNamespace[Q, V, U, Self]:
         """
         Returns an object that has all the metrology API functions on it.
+
         Parameters
         ----------
         api_version: str or None
-            string representing the version of the metrology API specification to be returned. If it is `None`, it should return the namespace corresponding to latest version of the metrology API specification.  If the given version is invalid or not implemented for the given module, an error should be raised. Default: `None`.
+            string representing the version of the metrology API
+            specification to be returned. If it is `None`, it should
+            return the namespace corresponding to latest version of the
+            metrology API specification.  If the given version is invalid
+            or not implemented for the given module, an error should be
+            raised. Default: `None`.
+
         Returns
         -------
         out: Any
-            an object representing the metrology API namespace. It should have every top-level function defined in the specification as an attribute. It may contain other public names as well, but it is recommended to only include those names that are part of the specification.
+            An object representing the metrology API namespace. It
+            should have every top-level function defined in the
+            specification as an attribute. It may contain other public
+            names as well, but it is recommended to only include those
+            names that are part of the specification.
         """
 
     def __mul__(self, other: Self, /) -> Self: ...
@@ -57,14 +68,25 @@ class Unit[D: Dimension](Protocol):
     ) -> MetrologyNamespace[Q, V, Self, D]:
         """
         Returns an object that has all the metrology API functions on it.
+
         Parameters
         ----------
         api_version: str or None
-            string representing the version of the metrology API specification to be returned. If it is `None`, it should return the namespace corresponding to latest version of the metrology API specification.  If the given version is invalid or not implemented for the given module, an error should be raised. Default: `None`.
+            string representing the version of the metrology API
+            specification to be returned. If it is `None`, it should
+            return the namespace corresponding to latest version of the
+            metrology API specification. If the given version is invalid
+            or not implemented for the given module, an error should be
+            raised. Default: `None`.
+
         Returns
         -------
         out: Any
-            an object representing the metrology API namespace. It should have every top-level function defined in the specification as an attribute. It may contain other public names as well, but it is recommended to only include those names that are part of the specification.
+            an object representing the metrology API namespace. It should
+            have every top-level function defined in the specification as
+            an attribute. It may contain other public names as well, but
+            it is recommended to only include those names that are part
+            of the specification.
         """
 
     @property
@@ -86,14 +108,25 @@ class Quantity[V, U: Unit[DT], D: Dimension](Protocol):
     ) -> MetrologyNamespace[Self, V, U, D]:
         """
         Returns an object that has all the metrology API functions on it.
+
         Parameters
         ----------
         api_version: str or None
-            string representing the version of the metrology API specification to be returned. If it is `None`, it should return the namespace corresponding to latest version of the metrology API specification.  If the given version is invalid or not implemented for the given module, an error should be raised. Default: `None`.
+            string representing the version of the metrology API
+            specification to be returned. If it is `None`, it should
+            return the namespace corresponding to the latest version of
+            the metrology API specification. If the given version is
+            invalid or not implemented for the given module, an error
+            should be raised. Default: `None`.
+
         Returns
         -------
         out: Any
-            an object representing the metrology API namespace. It should have every top-level function defined in the specification as an attribute. It may contain other public names as well, but it is recommended to only include those names that are part of the specification.
+            an object representing the metrology API namespace. It should
+            have every top-level function defined in the specification as
+            an attribute. It may contain other public names as well, but it
+            is recommended to only include those names that are part of the
+            specification.
         """
 
     @property
