@@ -35,7 +35,7 @@ class Dimension(Protocol):
         Parameters
         ----------
         api_version: str or None
-            string representing the version of the metrology API specification to be returned. If it is ``None``, it should return the namespace corresponding to latest version of the metrology API specification.  If the given version is invalid or not implemented for the given module, an error should be raised. Default: ``None``.
+            string representing the version of the metrology API specification to be returned. If it is `None`, it should return the namespace corresponding to latest version of the metrology API specification.  If the given version is invalid or not implemented for the given module, an error should be raised. Default: `None`.
         Returns
         -------
         out: Any
@@ -60,7 +60,7 @@ class Unit[D: Dimension](Protocol):
         Parameters
         ----------
         api_version: str or None
-            string representing the version of the metrology API specification to be returned. If it is ``None``, it should return the namespace corresponding to latest version of the metrology API specification.  If the given version is invalid or not implemented for the given module, an error should be raised. Default: ``None``.
+            string representing the version of the metrology API specification to be returned. If it is `None`, it should return the namespace corresponding to latest version of the metrology API specification.  If the given version is invalid or not implemented for the given module, an error should be raised. Default: `None`.
         Returns
         -------
         out: Any
@@ -89,7 +89,7 @@ class Quantity[V, U: Unit[DT], D: Dimension](Protocol):
         Parameters
         ----------
         api_version: str or None
-            string representing the version of the metrology API specification to be returned. If it is ``None``, it should return the namespace corresponding to latest version of the metrology API specification.  If the given version is invalid or not implemented for the given module, an error should be raised. Default: ``None``.
+            string representing the version of the metrology API specification to be returned. If it is `None`, it should return the namespace corresponding to latest version of the metrology API specification.  If the given version is invalid or not implemented for the given module, an error should be raised. Default: `None`.
         Returns
         -------
         out: Any
