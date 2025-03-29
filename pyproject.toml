@@ -56,7 +56,6 @@ warn_unused_configs = true
 strict = true
 enable_error_code = ["ignore-without-code", "truthy-bool"]
 disable_error_code = ["explicit-any", "decorated-any"]
-# disallow_any_expr = false
 
 
 [tool.basedpyright]
