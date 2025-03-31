@@ -51,7 +51,9 @@ repos:
     language: system
     types: [toml]
 
-- repo: https://github.com/numpy/numpydoc
-  rev: v1.8.0
-  hooks:
-    - id: numpydoc-validation
+  - id: numpydoc-validation
+    name: numpydoc-validation
+    entry: pixi run -e lint numpydoc lint
+    require_serial: false
+    language: system
+    types: [python]
