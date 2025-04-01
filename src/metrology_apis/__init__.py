@@ -15,16 +15,13 @@ __version__: Final = "0.0.1.dev0"
 __all__ = ["__version__", "Dimension", "Quantity", "Unit"]
 
 
-type _AnyValue = Any
-type _AnyDimension = Any
-type _AnyUnit = Unit[_AnyDimension]
-type _AnyQuantity = Quantity[_AnyValue, _AnyUnit, _AnyDimension]
+type VT = Any
+type UT = Unit[Any]
+type QT = Quantity[Any, Any, Any]
 
 
 @runtime_checkable
-class MetrologyNamespace[Q: _AnyQuantity, V: _AnyValue, U: _AnyUnit, D: Dimension](
-    Protocol
-):
+class MetrologyNamespace[Q: QT, V: VT, U: UT, D: Dimension](Protocol):
     @staticmethod
     def asdimension(obj: str | D) -> D: ...
 
@@ -39,7 +36,7 @@ class MetrologyNamespace[Q: _AnyQuantity, V: _AnyValue, U: _AnyUnit, D: Dimensio
 class Dimension(Protocol):
     def __metrology_namespace__(
         self, /, *, api_version: str | None = None
-    ) -> MetrologyNamespace[_AnyQuantity, _AnyValue, _AnyUnit, Self]:
+    ) -> MetrologyNamespace[QT, VT, UT, Self]:
         """
         Return an object that has all the metrology API functions on it.
 
@@ -76,7 +73,7 @@ class Dimension(Protocol):
 class Unit[D: Dimension](Protocol):
     def __metrology_namespace__(
         self, /, *, api_version: str | None = None
-    ) -> MetrologyNamespace[_AnyQuantity, _AnyValue, Self, D]:
+    ) -> MetrologyNamespace[QT, VT, Self, D]:
         """
         Return an object that has all the metrology API functions on it.
 
@@ -113,7 +110,7 @@ class Unit[D: Dimension](Protocol):
 
 
 @runtime_checkable
-class Quantity[V, U: _AnyUnit, D: Dimension](Protocol):
+class Quantity[V, U: UT, D: Dimension](Protocol):
     def __metrology_namespace__(
         self, /, *, api_version: str | None = None
     ) -> MetrologyNamespace[Self, V, U, D]:
