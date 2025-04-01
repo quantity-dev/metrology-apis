@@ -1,10 +1,11 @@
 """Metrology APIs."""
 
 from typing import (
+    Any,
     Final,
     Protocol,
     Self,
-    TypeVar,
+    TypeAlias,
     override,
     runtime_checkable,
 )
@@ -15,13 +16,13 @@ __version__: Final = "0.0.1.dev0"
 __all__ = ["__version__", "Dimension", "Quantity", "Unit"]
 
 
-VT = TypeVar("VT")
-DT = TypeVar("DT", bound="Dimension")
-UT = TypeVar("UT", bound="Unit[DT]")
+VT: TypeAlias = Any
+DT: TypeAlias = Any
+UT: TypeAlias = Any
 
 
 @runtime_checkable
-class MetrologyNamespace[Q: Quantity[VT, UT, DT], V, U: Unit[DT], D: Dimension](
+class MetrologyNamespace[Q: Quantity[VT, UT, DT], V: VT, U: Unit[DT], D: Dimension](
     Protocol
 ):
     @staticmethod
@@ -36,9 +37,9 @@ class MetrologyNamespace[Q: Quantity[VT, UT, DT], V, U: Unit[DT], D: Dimension](
 
 @runtime_checkable
 class Dimension(Protocol):
-    def __metrology_namespace__[Q: Quantity[VT, UT, DT], V, U: Unit[DT]](
+    def __metrology_namespace__(
         self, /, *, api_version: str | None = None
-    ) -> MetrologyNamespace[Q, V, U, Self]:
+    ) -> MetrologyNamespace["Quantity[VT, UT, DT]", VT, "Unit[DT]", Self]:
         """
         Return an object that has all the metrology API functions on it.
 
@@ -61,6 +62,7 @@ class Dimension(Protocol):
             names as well, but it is recommended to only include those
             names that are part of the specification.
         """
+        ...
 
     def __mul__(self, other: Self, /) -> Self: ...
     def __truediv__(self, other: Self, /) -> Self: ...
@@ -72,9 +74,9 @@ class Dimension(Protocol):
 
 @runtime_checkable
 class Unit[D: Dimension](Protocol):
-    def __metrology_namespace__[Q: Quantity[VT, UT, DT], V](
+    def __metrology_namespace__(
         self, /, *, api_version: str | None = None
-    ) -> MetrologyNamespace[Q, V, Self, D]:
+    ) -> MetrologyNamespace["Quantity[VT, UT, DT]", VT, Self, D]:
         """
         Return an object that has all the metrology API functions on it.
 
@@ -97,6 +99,7 @@ class Unit[D: Dimension](Protocol):
             it is recommended to only include those names that are part
             of the specification.
         """
+        ...
 
     @property
     def dimension(self) -> D: ...
@@ -136,6 +139,7 @@ class Quantity[V, U: Unit[DT], D: Dimension](Protocol):
             is recommended to only include those names that are part of the
             specification.
         """
+        ...
 
     @property
     def value(self) -> V: ...

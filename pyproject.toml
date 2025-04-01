@@ -63,6 +63,7 @@ include = ["src"]
 pythonVersion = "3.13"
 pythonPlatform = "All"
 typeCheckingMode = "all"
+reportExplicitAny = false
 
 
 [tool.numpydoc_validation]
