@@ -30,6 +30,7 @@ class Unit(Protocol):
     def __rmul__(self, other: Self, /) -> Self: ...
     def __rtruediv__(self, other: Self, /) -> Self: ...
 
+
 @runtime_checkable
 class Quantity[V, U: Unit](Protocol):
     @property
@@ -40,4 +41,6 @@ class Quantity[V, U: Unit](Protocol):
     ### Dunder Methods
 
     @override
-    def __eq__[B](self: "Quantity[V, U]", other: "Quantity[op.CanEq[V, B], U]", /) -> B: ...  # type: ignore[override]  # pyright: ignore[reportIncompatibleMethodOverride]
+    def __eq__[B](  # type: ignore[override]  # pyright: ignore[reportIncompatibleMethodOverride]
+        self: "Quantity[V, U]", other: "Quantity[op.CanEq[V, B], U]", /
+    ) -> B: ...
