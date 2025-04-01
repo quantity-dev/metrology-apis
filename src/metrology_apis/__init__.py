@@ -1,8 +1,12 @@
 """Metrology APIs."""
 
-from typing import Final, Protocol, Self, override, runtime_checkable
+from typing import TYPE_CHECKING, Final, Protocol, Self, override, runtime_checkable
 
 import optype as op
+
+if TYPE_CHECKING:
+    import fractions
+
 
 __version__: Final = "0.0.1.dev0"
 __all__ = ["__version__", "Dimension", "Quantity", "Unit"]
@@ -16,6 +20,31 @@ class Dimension(Protocol):
 
     def __rmul__(self, other: Self, /) -> Self: ...
     def __rtruediv__(self, other: Self, /) -> Self: ...
+
+    def decompose(self) -> "dict[Dimension, int | fractions.Fraction]":
+        """
+        Decompose the dimension into its base dimensions and exponents.
+
+        Notes
+        -----
+        By far the most common dimension system is (Length, Mass, Time, Electric
+        Current, Temperature, Amount of Substance, Luminous Intensity).
+        This method will decompose the dimension into a dictionary of these
+        base dimensions and their respective exponents.
+
+        Examples
+        --------
+        As this is an API protocol, no runtime examples are possible. The
+        following is an illustrative example:
+
+        >>> import metrology as u
+
+        >>> dim = u.Length / u.Time
+
+        >>> dim.decompose()
+        {Length: 1, Time: -1}
+        """
+        ...
 
 
 @runtime_checkable
