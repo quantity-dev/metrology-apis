@@ -1,6 +1,13 @@
 """Metrology APIs."""
 
-from typing import Any, Final, Generic, Protocol, Self, TypeVar, override, runtime_checkable
+from typing import (
+    Final,
+    Protocol,
+    Self,
+    TypeVar,
+    override,
+    runtime_checkable,
+)
 
 import optype as op
 
@@ -8,13 +15,15 @@ __version__: Final = "0.0.1.dev0"
 __all__ = ["__version__", "Dimension", "Quantity", "Unit"]
 
 
-VT = TypeVar('VT')
-DT = TypeVar('DT', bound='Dimension')
-UT = TypeVar('UT', bound='Unit[DT]')
+VT = TypeVar("VT")
+DT = TypeVar("DT", bound="Dimension")
+UT = TypeVar("UT", bound="Unit[DT]")
+
 
 @runtime_checkable
-class MetrologyNamespace[Q: Quantity[VT, UT, DT], V, U: Unit[DT], D: Dimension](Protocol):
-
+class MetrologyNamespace[Q: Quantity[VT, UT, DT], V, U: Unit[DT], D: Dimension](
+    Protocol
+):
     @staticmethod
     def asdimension(obj: str | D) -> D: ...
 
@@ -31,12 +40,12 @@ class Dimension(Protocol):
         self, /, *, api_version: str | None = None
     ) -> MetrologyNamespace[Q, V, U, Self]:
         """
-        Returns an object that has all the metrology API functions on it.
+        Return an object that has all the metrology API functions on it.
 
         Parameters
         ----------
-        api_version: str or None
-            string representing the version of the metrology API
+        api_version : str or None
+            String representing the version of the metrology API
             specification to be returned. If it is `None`, it should
             return the namespace corresponding to latest version of the
             metrology API specification.  If the given version is invalid
@@ -45,7 +54,7 @@ class Dimension(Protocol):
 
         Returns
         -------
-        out: Any
+        Any
             An object representing the metrology API namespace. It
             should have every top-level function defined in the
             specification as an attribute. It may contain other public
@@ -67,12 +76,12 @@ class Unit[D: Dimension](Protocol):
         self, /, *, api_version: str | None = None
     ) -> MetrologyNamespace[Q, V, Self, D]:
         """
-        Returns an object that has all the metrology API functions on it.
+        Return an object that has all the metrology API functions on it.
 
         Parameters
         ----------
-        api_version: str or None
-            string representing the version of the metrology API
+        api_version : str or None
+            String representing the version of the metrology API
             specification to be returned. If it is `None`, it should
             return the namespace corresponding to latest version of the
             metrology API specification. If the given version is invalid
@@ -81,8 +90,8 @@ class Unit[D: Dimension](Protocol):
 
         Returns
         -------
-        out: Any
-            an object representing the metrology API namespace. It should
+        Any
+            An object representing the metrology API namespace. It should
             have every top-level function defined in the specification as
             an attribute. It may contain other public names as well, but
             it is recommended to only include those names that are part
@@ -100,19 +109,18 @@ class Unit[D: Dimension](Protocol):
     def __rtruediv__(self, other: Self, /) -> Self: ...
 
 
-
 @runtime_checkable
 class Quantity[V, U: Unit[DT], D: Dimension](Protocol):
     def __metrology_namespace__(
         self, /, *, api_version: str | None = None
     ) -> MetrologyNamespace[Self, V, U, D]:
         """
-        Returns an object that has all the metrology API functions on it.
+        Return an object that has all the metrology API functions on it.
 
         Parameters
         ----------
-        api_version: str or None
-            string representing the version of the metrology API
+        api_version : str or None
+            String representing the version of the metrology API
             specification to be returned. If it is `None`, it should
             return the namespace corresponding to the latest version of
             the metrology API specification. If the given version is
@@ -121,8 +129,8 @@ class Quantity[V, U: Unit[DT], D: Dimension](Protocol):
 
         Returns
         -------
-        out: Any
-            an object representing the metrology API namespace. It should
+        Any
+            An object representing the metrology API namespace. It should
             have every top-level function defined in the specification as
             an attribute. It may contain other public names as well, but it
             is recommended to only include those names that are part of the
