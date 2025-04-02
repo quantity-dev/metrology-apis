@@ -55,6 +55,7 @@ python_version = "3.13"
 warn_unused_configs = true
 strict = true
 enable_error_code = ["ignore-without-code", "truthy-bool"]
+disable_error_code = ["explicit-any", "decorated-any"]
 
 
 [tool.basedpyright]
@@ -62,6 +63,7 @@ include = ["src"]
 pythonVersion = "3.13"
 pythonPlatform = "All"
 typeCheckingMode = "all"
+reportExplicitAny = false
 
 
 [tool.numpydoc_validation]
