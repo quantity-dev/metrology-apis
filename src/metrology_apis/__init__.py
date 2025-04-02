@@ -52,7 +52,7 @@ class Dimension(Protocol):
 
         Returns
         -------
-        Any
+        MetrologyNamespace
             An object representing the metrology API namespace. It
             should have every top-level function defined in the
             specification as an attribute. It may contain other public
@@ -89,7 +89,7 @@ class Unit[D: Dimension](Protocol):
 
         Returns
         -------
-        Any
+        MetrologyNamespace
             An object representing the metrology API namespace. It should
             have every top-level function defined in the specification as
             an attribute. It may contain other public names as well, but
@@ -129,7 +129,7 @@ class Quantity[V, U: UT, D: Dimension](Protocol):
 
         Returns
         -------
-        Any
+        MetrologyNamespace
             An object representing the metrology API namespace. It should
             have every top-level function defined in the specification as
             an attribute. It may contain other public names as well, but it
