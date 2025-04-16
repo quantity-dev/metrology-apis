@@ -21,7 +21,7 @@ type QT = Quantity[Any, Any, Any]
 
 
 @runtime_checkable
-class MetrologyNamespace[Q: QT, V: VT, U: UT, D: Dimension](Protocol):
+class MetrologyNamespace[Q: QT = Any, V: VT = Any, U: UT = Any, D: Dimension = Any](Protocol):
     @staticmethod
     def asdimension(obj: str | D) -> D: ...
 
@@ -110,7 +110,7 @@ class Unit[D: Dimension](Protocol):
 
 
 @runtime_checkable
-class Quantity[V, U: UT, D: Dimension](Protocol):
+class Quantity[V = Any, U: UT = Any, D: Dimension = Any](Protocol):
     def __metrology_namespace__(
         self, /, *, api_version: str | None = None
     ) -> MetrologyNamespace[Self, V, U, D]:
