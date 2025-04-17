@@ -21,7 +21,9 @@ type QT = Quantity[Any, Any, Any]
 
 
 @runtime_checkable
-class MetrologyNamespace[Q: QT = Any, V: VT = Any, U: UT = Any, D: Dimension = Any](Protocol):
+class MetrologyNamespace[Q: QT = Any, V: VT = Any, U: UT = Any, D: Dimension = Any](
+    Protocol
+):
     @staticmethod
     def asdimension(obj: str | D) -> D: ...
 
@@ -55,9 +57,7 @@ class Dimension(Protocol):
         MetrologyNamespace
             An object representing the metrology API namespace. It
             should have every top-level function defined in the
-            specification as an attribute. It may contain other public
-            names as well, but it is recommended to only include those
-            names that are part of the specification.
+            specification as an attribute.
         """
         ...
 
@@ -92,9 +92,7 @@ class Unit[D: Dimension = Any](Protocol):
         MetrologyNamespace
             An object representing the metrology API namespace. It should
             have every top-level function defined in the specification as
-            an attribute. It may contain other public names as well, but
-            it is recommended to only include those names that are part
-            of the specification.
+            an attribute.
         """
         ...
 
@@ -132,9 +130,7 @@ class Quantity[V: VT = Any, U: UT = Any, D: Dimension = Any](Protocol):
         MetrologyNamespace
             An object representing the metrology API namespace. It should
             have every top-level function defined in the specification as
-            an attribute. It may contain other public names as well, but it
-            is recommended to only include those names that are part of the
-            specification.
+            an attribute.
         """
         ...
 
