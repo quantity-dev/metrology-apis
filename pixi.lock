@@ -1453,7 +1453,7 @@ packages:
   depends:
   - python
   input:
-    hash: f72b39f94f18abc5111fa2db082f41067e1ec81f2a5a62b2ef3606bda8032715
+    hash: 63cfb35f46ce36014bc4992a7aa77bfeded5b1a28aade81bc0d61b05f5bf83b4
     globs:
     - pyproject.toml
 - conda: https://prefix.dev/conda-forge/noarch/mypy_extensions-1.0.0-pyha770c72_1.conda

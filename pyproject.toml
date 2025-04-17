@@ -47,7 +47,7 @@ backend = { name = "pixi-build-python", version = "0.1.*" }
 
 [tool.pixi.package.host-dependencies]
 hatchling = "==1.27.0"
-python = "3.13.*"      # prefix-dev/pixi-build-backends#130
+python = ">=3.13"
 
 
 [tool.mypy]
