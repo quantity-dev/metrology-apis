@@ -138,32 +138,23 @@ class HasMetrologyNamespace[Q: QT = QT, V: VT = VT, U: UT = UT, D: DT = DT](Prot
         ...
 
 
+# ===================================================================
+# Dimension
+
+
 @runtime_checkable
 class Dimension(Protocol):
+    """
+    A `Protocol` for metrology-aware Dimension objects.
+
+    A Dimension represents a physical quantity's dimensionality, such as length, mass, or time.
+    """
+
+    # NOTE: can't inherit from HasMetrologyNamespace because of `Self` in the
+    # return type.
     def __metrology_namespace__(
         self, /, *, api_version: str | None = None
-    ) -> MetrologyNamespace[QT, VT, UT, Self]:
-        """
-        Return an object that has all the metrology API functions on it.
-
-        Parameters
-        ----------
-        api_version : str or None
-            String representing the version of the metrology API
-            specification to be returned. If it is `None`, it should
-            return the namespace corresponding to latest version of the
-            metrology API specification.  If the given version is invalid
-            or not implemented for the given module, an error should be
-            raised. Default: `None`.
-
-        Returns
-        -------
-        MetrologyNamespace
-            An object representing the metrology API namespace. It
-            should have every top-level function defined in the
-            specification as an attribute.
-        """
-        ...
+    ) -> MetrologyNamespace[QT, VT, UT, Self]: ...
 
     def __mul__(self, other: Self, /) -> Self: ...
     def __truediv__(self, other: Self, /) -> Self: ...
@@ -173,32 +164,19 @@ class Dimension(Protocol):
     def __rtruediv__(self, other: Self, /) -> Self: ...
 
 
+Dimension.__metrology_namespace__.__doc__ = (  # type: ignore[any]
+    HasMetrologyNamespace.__metrology_namespace__.__doc__
+)
+
+# ===================================================================
+# Unit
+
+
 @runtime_checkable
 class Unit[D: Dimension = Any](Protocol):
     def __metrology_namespace__(
         self, /, *, api_version: str | None = None
-    ) -> MetrologyNamespace[QT, VT, Self, D]:
-        """
-        Return an object that has all the metrology API functions on it.
-
-        Parameters
-        ----------
-        api_version : str or None
-            String representing the version of the metrology API
-            specification to be returned. If it is `None`, it should
-            return the namespace corresponding to latest version of the
-            metrology API specification. If the given version is invalid
-            or not implemented for the given module, an error should be
-            raised. Default: `None`.
-
-        Returns
-        -------
-        MetrologyNamespace
-            An object representing the metrology API namespace. It should
-            have every top-level function defined in the specification as
-            an attribute.
-        """
-        ...
+    ) -> MetrologyNamespace[QT, VT, Self, D]: ...
 
     @property
     def dimension(self) -> D: ...
@@ -211,32 +189,19 @@ class Unit[D: Dimension = Any](Protocol):
     def __rtruediv__(self, other: Self, /) -> Self: ...
 
 
+Unit.__metrology_namespace__.__doc__ = (  # type: ignore[any]
+    HasMetrologyNamespace.__metrology_namespace__.__doc__
+)
+
+# ===================================================================
+# Quantity
+
+
 @runtime_checkable
 class Quantity[V: VT = Any, U: UT = Any, D: Dimension = Any](Protocol):
     def __metrology_namespace__(
         self, /, *, api_version: str | None = None
-    ) -> MetrologyNamespace[Self, V, U, D]:
-        """
-        Return an object that has all the metrology API functions on it.
-
-        Parameters
-        ----------
-        api_version : str or None
-            String representing the version of the metrology API
-            specification to be returned. If it is `None`, it should
-            return the namespace corresponding to the latest version of
-            the metrology API specification. If the given version is
-            invalid or not implemented for the given module, an error
-            should be raised. Default: `None`.
-
-        Returns
-        -------
-        MetrologyNamespace
-            An object representing the metrology API namespace. It should
-            have every top-level function defined in the specification as
-            an attribute.
-        """
-        ...
+    ) -> MetrologyNamespace[Self, V, U, D]: ...
 
     @property
     def value(self) -> V: ...
@@ -308,3 +273,8 @@ class Quantity[V: VT = Any, U: UT = Any, D: Dimension = Any](Protocol):
         other: op.JustInt | op.JustFloat,
         /,
     ) -> "Quantity[R, U, D]": ...
+
+
+Quantity.__metrology_namespace__.__doc__ = (  # type: ignore[any]
+    HasMetrologyNamespace.__metrology_namespace__.__doc__
+)
