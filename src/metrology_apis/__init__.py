@@ -16,6 +16,7 @@ __all__ = ["__version__", "Dimension", "Quantity", "Unit"]
 
 
 type VT = Any
+type DT = Dimension
 type UT = Unit[Any]
 type QT = Quantity[Any, Any, Any]
 
