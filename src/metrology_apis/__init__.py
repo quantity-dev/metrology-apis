@@ -86,6 +86,59 @@ class MetrologyNamespace[Q: QT = QT, V: VT = VT, U: UT = UT, D: DT = DT](Protoco
 
 
 @runtime_checkable
+class HasMetrologyNamespace[Q: QT = QT, V: VT = VT, U: UT = UT, D: DT = DT](Protocol):
+    """
+    A `Protocol` for metrology-aware objects.
+
+    The type is ``HasMetrologyNamespace[QT = Quantity, VT = Any, UT = Unit, DT =
+    Dimension]`` where:
+
+    - `QT` is the type of `Quantity`s. Default ``Quantity[Any, Any, Any]``.
+    - `VT` is the type of values. Default ``Any``.
+    - `UT` is the type of units. Default ``Unit[Any]``.
+    - `DT` is the type of dimensions. Default ``Dimension[Any]``.
+
+    Examples
+    --------
+    This example demonstrates a metrology namespace using placeholder functions
+    and objects.
+
+    >>> from types import SimpleNamespace
+    >>> mx = SimpleNamespace(asdimension=lambda x: x, asunit=lambda x: x,
+    ...                      asquantity=lambda x, unit: (x, unit))
+    >>> obj = SimpleNamespace(__metrology_namespace__=lambda: mx)
+
+    >>> isinstance(mx.__metrology_namespace__(), MetrologyNamespace)
+    True
+    """
+
+    def __metrology_namespace__(
+        self, /, *, api_version: str | None = None
+    ) -> MetrologyNamespace[Q, V, U, D]:
+        """
+        Return an object that has all the metrology API functions on it.
+
+        Parameters
+        ----------
+        api_version : str or None
+            String representing the version of the metrology API
+            specification to be returned. If it is `None`, it should
+            return the namespace corresponding to latest version of the
+            metrology API specification.  If the given version is invalid
+            or not implemented for the given module, an error should be
+            raised. Default: `None`.
+
+        Returns
+        -------
+        MetrologyNamespace
+            An object representing the metrology API namespace. It
+            should have every top-level function defined in the
+            specification as an attribute.
+        """
+        ...
+
+
+@runtime_checkable
 class Dimension(Protocol):
     def __metrology_namespace__(
         self, /, *, api_version: str | None = None
