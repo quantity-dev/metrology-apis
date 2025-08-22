@@ -12,7 +12,7 @@ from typing import (
 import optype as op
 
 __version__: Final = "0.0.1.dev0"
-__all__ = ["__version__", "Dimension", "Quantity", "Unit"]
+__all__ = ["__version__", "Dimension", "MetrologyNamespace", "Quantity", "Unit"]
 
 
 type VT = Any
@@ -22,17 +22,67 @@ type QT = Quantity[Any, Any, Any]
 
 
 @runtime_checkable
-class MetrologyNamespace[Q: QT = Any, V: VT = Any, U: UT = Any, D: Dimension = Any](
-    Protocol
-):
-    @staticmethod
-    def asdimension(obj: str | D) -> D: ...
+class MetrologyNamespace[Q: QT = QT, V: VT = VT, U: UT = UT, D: DT = DT](Protocol):
+    """
+    A runtime-checkable `Protocol` that defines a metrology namespace.
+
+    The type is ``MetrologyNamespace[QT = Quantity, VT = Any, UT = Unit], DT =
+    Dimension]`` where:
+
+    - `QT` is the type of `Quantity`s. Default ``Quantity[Any, Any, Any]``.
+    - `VT` is the type of values. Default ``Any``.
+    - `UT` is the type of units. Default ``Unit[Any]``.
+    - `DT` is the type of dimensions. Default ``Dimension[Any]``.
+
+    Examples
+    --------
+    This example demonstrates a metrology namespace using placeholder functions.
+
+    >>> from types import SimpleNamespace
+    >>> mx = SimpleNamespace(asdimension=lambda x: x, asunit=lambda x: x,
+    ...                      asquantity=lambda x, unit: (x, unit))
+
+    >>> isinstance(mx.__metrology_namespace__(), MetrologyNamespace)
+    True
+    """
 
     @staticmethod
-    def asunit(obj: str | U) -> U: ...
+    def asdimension(obj: str | D, /) -> D:
+        """
+        Convert an object to a dimension.
+
+        Parameters
+        ----------
+        obj : str | Dimension
+            The object to convert.
+        """
+        ...
 
     @staticmethod
-    def asquantity(obj: Q | V, *, unit: U) -> Q: ...
+    def asunit(obj: str | U, /) -> U:
+        """
+        Convert an object to a unit.
+
+        Parameters
+        ----------
+        obj : str | Unit
+            The object to convert.
+        """
+        ...
+
+    @staticmethod
+    def asquantity(obj: Q | V, /, *, unit: U) -> Q:
+        """
+        Convert an object to a quantity.
+
+        Parameters
+        ----------
+        obj : Quantity | Value
+            The object to convert.
+        unit : Unit
+            The unit to use for the quantity.
+        """
+        ...
 
 
 @runtime_checkable
