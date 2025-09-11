@@ -3,7 +3,7 @@ authors = [{ name = "quantity-dev contributors" }]
 name = "metrology-apis"
 requires-python = ">= 3.13"
 version = "0.0.1.dev0"
-dependencies = ["optype>=0.9.3,<0.10"]
+dependencies = ["optype"]
 
 [build-system]
 build-backend = "hatchling.build"
@@ -11,39 +11,45 @@ requires = ["hatchling"]
 
 
 [tool.pixi.workspace]
-channels = [
-  "https://prefix.dev/pixi-build-backends",
-  "https://prefix.dev/conda-forge",
-]
+channels = ["https://prefix.dev/conda-forge"]
 platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
 preview = ["pixi-build"]
 
 [tool.pixi.dependencies]
-metrology-apis = { path = "." }
-optype = ">=0.9.3,<0.10"
+# TODO(lucascolley): uncomment when prefix-dev/pixi#4523 is merged
+# metrology-apis = { path = "." }
+optype = ">=0.13.4,<0.14"
 
 [tool.pixi.feature.lint.dependencies]
-pre-commit = "*"
-pre-commit-hooks = "*"
-taplo = "*"
-ruff = "*"
-mdformat = "*"
-mdformat-ruff = "*"
-basedpyright = "*"
-basedmypy = "*"
-numpydoc = "*"
+taplo = ">=0.10.0,<0.11"
+ruff = ">=0.13.0,<0.14"
+mdformat = ">=0.7.22,<0.8"
+mdformat-ruff = ">=0.1.3,<0.2"
+basedpyright = ">=1.31.4,<2"
+basedmypy = ">=2.10.0,<3"
+numpydoc = ">=1.9.0,<2"
+lefthook = ">=1.12.4,<2"
 
 [tool.pixi.feature.lint.tasks]
-pyright = "basedpyright"
-mypy = "mypy"
-pre-commit = "pre-commit run --all-files"
-lint = { depends-on = ["pre-commit", "mypy", "pyright"] }
+hooks = { cmd = "lefthook install", description = "Install pre-commit hooks" }
+lefthook = { cmd = "lefthook", description = "Run lefthook" }
+lint = { cmd = "lefthook run pre-commit --all-files --force", description = "Run all linters" }
+mdformat = { cmd = "mdformat", description = "Format markdown with mdformat" }
+mypy = { cmd = "mypy", description = "Type check with mypy" }
+numpydoc = { cmd = "numpydoc lint", description = "Validate docstrings with numpydoc" }
+pre-commit = { cmd = "lefthook run pre-commit", description = "Run pre-commit checks" }
+pyright = { cmd = "basedpyright", description = "Type check with basedpyright" }
+ruff-check = { cmd = "ruff check --fix --exit-non-zero-on-fix --force-exclude", description = "Lint with ruff" }
+ruff-format = { cmd = "ruff format --exit-non-zero-on-format --force-exclude", description = "Format with ruff" }
+taplo = { cmd = "taplo fmt", description = "Format TOML with taplo" }
 
 [tool.pixi.environments]
 lint = ["lint"]
 
-[tool.pixi.package.build]
-backend = { name = "pixi-build-python", version = "0.1.*" }
+
+[tool.pixi.package.build.backend]
+name = "pixi-build-python"
+version = "*"
 
 [tool.pixi.package.host-dependencies]
 hatchling = "==1.27.0"
