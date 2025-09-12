@@ -42,3 +42,7 @@ pre-commit:
     - name: numpydoc
       glob: "*.py"
       run: pixi {run} numpydoc {staged_files}
+    - name: taplo
+      stage_fixed: true
+      glob: "*.toml"
+      run: pixi {run} taplo {staged_files}
