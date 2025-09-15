@@ -164,7 +164,7 @@ class Dimension(Protocol):
     def __rtruediv__(self, other: Self, /) -> Self: ...
 
 
-Dimension.__metrology_namespace__.__doc__ = (  # type: ignore[any]
+Dimension.__metrology_namespace__.__doc__ = (
     HasMetrologyNamespace.__metrology_namespace__.__doc__
 )
 
@@ -189,7 +189,7 @@ class Unit[D: Dimension = Any](Protocol):
     def __rtruediv__(self, other: Self, /) -> Self: ...
 
 
-Unit.__metrology_namespace__.__doc__ = (  # type: ignore[any]
+Unit.__metrology_namespace__.__doc__ = (
     HasMetrologyNamespace.__metrology_namespace__.__doc__
 )
 
@@ -275,6 +275,6 @@ class Quantity[V: VT = Any, U: UT = Any, D: Dimension = Any](Protocol):
     ) -> "Quantity[R, U, D]": ...
 
 
-Quantity.__metrology_namespace__.__doc__ = (  # type: ignore[any]
+Quantity.__metrology_namespace__.__doc__ = (
     HasMetrologyNamespace.__metrology_namespace__.__doc__
 )
