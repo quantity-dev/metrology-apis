@@ -173,7 +173,7 @@ Dimension.__metrology_namespace__.__doc__ = (
 
 
 @runtime_checkable
-class Unit[D: Dimension = Any](Protocol):
+class Unit[D: DT = DT](Protocol):
     def __metrology_namespace__(
         self, /, *, api_version: str | None = None
     ) -> MetrologyNamespace[QT, VT, Self, D]: ...
@@ -198,7 +198,7 @@ Unit.__metrology_namespace__.__doc__ = (
 
 
 @runtime_checkable
-class Quantity[V: VT = Any, U: UT = Any, D: Dimension = Any](Protocol):
+class Quantity[V: VT = VT, U: UT = UT, D: DT = DT](Protocol):
     def __metrology_namespace__(
         self, /, *, api_version: str | None = None
     ) -> MetrologyNamespace[Self, V, U, D]: ...
