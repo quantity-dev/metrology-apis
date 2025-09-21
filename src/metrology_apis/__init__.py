@@ -148,6 +148,65 @@ class Dimension(Protocol):
     A `Protocol` for metrology-aware Dimension objects.
 
     A Dimension represents a physical quantity's dimensionality, such as length, mass, or time.
+
+    Examples
+    --------
+    In this example, we create a simple Dimension class and demonstrate its usage.
+
+    >>> def asdimension(x):
+    ...     if isinstance(x, Dimensions):
+    ...         return x
+    ...     if hasattr(x, '__metrology_namespace__'):
+    ...         mx = x.__metrology_namespace__()
+    ...         if hasattr(mx, 'asdimension'):
+    ...             return mx.asdimension(x)
+    ...     raise TypeError(f"Cannot convert {x!r} to Dimensions")
+    ...
+    >>> class Dimensions:
+    ...     def __init__(self, **dims: float):
+    ...         self._dims = dims
+    ...
+    ...     def __metrology_namespace__(self, /, *, api_version = None):
+    ...         from types import SimpleNamespace
+    ...         return SimpleNamespace(
+    ...             asdimension = asdimension,
+    ...             asunit = lambda x: x,
+    ...             asquantity = lambda x, unit: (x, unit)
+    ...         )
+    ...
+    ...     def __mul__(self, other):
+    ...         keys = self._dims.keys() | other._dims.keys()
+    ...         return Dimensions(**{k: self._dims.get(k, 0) + other._dims.get(k, 0) for k in keys})
+    ...
+    ...     def __truediv__(self, other):
+    ...         keys = self._dims.keys() | other._dims.keys()
+    ...         return Dimensions(**{k: self._dims.get(k, 0) - other._dims.get(k, 0) for k in keys})
+    ...
+    ...     def __pow__(self, power: int):
+    ...         return Dimensions(**{k: v * power for k, v in self._dims.items()})
+    ...
+    ...     def __repr__(self):
+    ...         return "Dimensions(" + ", ".join(f"{k}={v}" for k, v in self._dims.items() if v != 0) + ")"
+
+    >>> length = Dimensions(L=1)
+    >>> print(length)
+    Dimensions(L=1)
+
+    >>> area = length * length
+    >>> print(area)
+    Dimensions(L=2)
+
+    >>> volume = length ** 3
+    >>> print(volume)
+    Dimensions(L=3)
+
+    >>> time = Dimensions(T=1)
+    >>> print(time)
+    Dimensions(T=1)
+
+    >>> speed = length / time
+    >>> print(speed)
+    Dimensions(L=1, T=-1)
     """
 
     # NOTE: can't inherit from HasMetrologyNamespace because of `Self` in the
