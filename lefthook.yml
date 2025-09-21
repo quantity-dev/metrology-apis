@@ -19,6 +19,9 @@ output:
 pre-commit:
   parallel: true
   jobs:
+    - name: pixi-sync
+      glob: "pyproject.toml"
+      run: pixi {run} python scripts/check_pixi_sync.py
     - name: mdformat
       glob: "*.{md}"
       stage_fixed: true
