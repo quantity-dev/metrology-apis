@@ -176,13 +176,8 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/zipp-3.23.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/linux-64/zstandard-0.24.0-py313h736c1ce_1.conda
       - conda: https://prefix.dev/conda-forge/linux-64/zstd-1.5.7-hb8e6e7a_2.conda
-      - pypi: https://files.pythonhosted.org/packages/db/d3/9dcc0f5797f070ec8edf30fbadfb200e71d9db6b84d211e3b2085a7589a0/click-8.3.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/57/a4/38e105dac41f1a1ac17cbec20cdaeba8ccac5592b6eb4e4466b332d1a6e7/lefthook-1.13.1-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/1a/d9/be19749413b92a5e5bc4261230a0fa5c439175a4961db5a76644cb7404db/pyproject2conda-0.12.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/e3/30/3c4d035596d3cf444529e0b2953ad0466f6049528a879d27534700580395/rich-14.1.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/e0/f9/0595336914c5619e5f28a1fb793285925a8cd4b432c9da0a987836c7f822/shellingham-1.5.4-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/ef/cc/656aed22a59cf4c50dcaaa66aaa570d4a1412acdd8ea429120a6bb00f336/taplo-0.9.3-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-      - pypi: https://files.pythonhosted.org/packages/1e/fa/6473c00b5eb26a2ba427813107699d3e6f4e1a4afad3f7494b17bdef3422/typer-0.19.1-py3-none-any.whl
       osx-64:
       - conda: https://prefix.dev/conda-forge/noarch/alabaster-1.0.0-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/babel-2.17.0-pyhd8ed1ab_0.conda
@@ -256,13 +251,8 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/zipp-3.23.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/osx-64/zstandard-0.24.0-py313h4b03fa9_1.conda
       - conda: https://prefix.dev/conda-forge/osx-64/zstd-1.5.7-h8210216_2.conda
-      - pypi: https://files.pythonhosted.org/packages/db/d3/9dcc0f5797f070ec8edf30fbadfb200e71d9db6b84d211e3b2085a7589a0/click-8.3.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/57/a4/38e105dac41f1a1ac17cbec20cdaeba8ccac5592b6eb4e4466b332d1a6e7/lefthook-1.13.1-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/1a/d9/be19749413b92a5e5bc4261230a0fa5c439175a4961db5a76644cb7404db/pyproject2conda-0.12.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/e3/30/3c4d035596d3cf444529e0b2953ad0466f6049528a879d27534700580395/rich-14.1.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/e0/f9/0595336914c5619e5f28a1fb793285925a8cd4b432c9da0a987836c7f822/shellingham-1.5.4-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/61/42/a93c18ebb7cf3ee2a7a30dd2fda654aca458956c3b64bdfb9d82b2c42679/taplo-0.9.3-py3-none-macosx_10_12_x86_64.whl
-      - pypi: https://files.pythonhosted.org/packages/1e/fa/6473c00b5eb26a2ba427813107699d3e6f4e1a4afad3f7494b17bdef3422/typer-0.19.1-py3-none-any.whl
       osx-arm64:
       - conda: https://prefix.dev/conda-forge/noarch/alabaster-1.0.0-pyhd8ed1ab_1.conda
       - conda: https://prefix.dev/conda-forge/noarch/babel-2.17.0-pyhd8ed1ab_0.conda
@@ -336,13 +326,8 @@ environments:
       - conda: https://prefix.dev/conda-forge/noarch/zipp-3.23.0-pyhd8ed1ab_0.conda
       - conda: https://prefix.dev/conda-forge/osx-arm64/zstandard-0.24.0-py313hff09f02_1.conda
       - conda: https://prefix.dev/conda-forge/osx-arm64/zstd-1.5.7-h6491c7d_2.conda
-      - pypi: https://files.pythonhosted.org/packages/db/d3/9dcc0f5797f070ec8edf30fbadfb200e71d9db6b84d211e3b2085a7589a0/click-8.3.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/57/a4/38e105dac41f1a1ac17cbec20cdaeba8ccac5592b6eb4e4466b332d1a6e7/lefthook-1.13.1-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/1a/d9/be19749413b92a5e5bc4261230a0fa5c439175a4961db5a76644cb7404db/pyproject2conda-0.12.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/e3/30/3c4d035596d3cf444529e0b2953ad0466f6049528a879d27534700580395/rich-14.1.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/e0/f9/0595336914c5619e5f28a1fb793285925a8cd4b432c9da0a987836c7f822/shellingham-1.5.4-py2.py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/82/d2/f5b6e4a4f474f9fe613b5b91012520c3f62e46748a6ce9fd61fc2fb52fa2/taplo-0.9.3-py3-none-macosx_11_0_arm64.whl
-      - pypi: https://files.pythonhosted.org/packages/1e/fa/6473c00b5eb26a2ba427813107699d3e6f4e1a4afad3f7494b17bdef3422/typer-0.19.1-py3-none-any.whl
 packages:
 - conda: https://prefix.dev/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
   sha256: fe51de6107f9edc7aa4f786a70f4a883943bc9d39b3bb7307c04c41410990726
@@ -579,13 +564,6 @@ packages:
   - pkg:pypi/charset-normalizer?source=hash-mapping
   size: 51033
   timestamp: 1754767444665
-- pypi: https://files.pythonhosted.org/packages/db/d3/9dcc0f5797f070ec8edf30fbadfb200e71d9db6b84d211e3b2085a7589a0/click-8.3.0-py3-none-any.whl
-  name: click
-  version: 8.3.0
-  sha256: 9b9f285302c6e3064f4330c05f05b81945b2a39544279343e6e7c5f27a9baddc
-  requires_dist:
-  - colorama ; sys_platform == 'win32'
-  requires_python: '>=3.10'
 - conda: https://prefix.dev/conda-forge/noarch/colorama-0.4.6-pyhd8ed1ab_1.conda
   sha256: ab29d57dc70786c1269633ba3dff20288b81664d3ff8d21af995742e2bb03287
   md5: 962b9857ee8e7018c22f2776ffa0b2d7
@@ -1568,68 +1546,6 @@ packages:
   - pkg:pypi/pygments?source=hash-mapping
   size: 889287
   timestamp: 1750615908735
-- pypi: https://files.pythonhosted.org/packages/1a/d9/be19749413b92a5e5bc4261230a0fa5c439175a4961db5a76644cb7404db/pyproject2conda-0.12.0-py3-none-any.whl
-  name: pyproject2conda
-  version: 0.12.0
-  sha256: 1a1c08147db33be169c520672cd89e6ed8574d59fce2d202860952fcdcd6db94
-  requires_dist:
-  - packaging
-  - tomli ; python_full_version < '3.11'
-  - typer
-  - typing-extensions ; python_full_version < '3.11'
-  - ipykernel ; extra == 'dev'
-  - mypy>=1.10.1 ; extra == 'dev'
-  - nox>=2024.4.15 ; extra == 'dev'
-  - packaging ; extra == 'dev'
-  - pytest ; extra == 'dev'
-  - pytest-accept ; extra == 'dev'
-  - pytest-cov ; extra == 'dev'
-  - pytest-sugar ; extra == 'dev'
-  - pytest-xdist ; extra == 'dev'
-  - types-click ; extra == 'dev'
-  - ipykernel ; extra == 'dev-complete'
-  - mypy>=1.10.1 ; extra == 'dev-complete'
-  - nox>=2024.4.15 ; extra == 'dev-complete'
-  - packaging ; extra == 'dev-complete'
-  - pre-commit ; extra == 'dev-complete'
-  - pytest ; extra == 'dev-complete'
-  - pytest-accept ; extra == 'dev-complete'
-  - pytest-cov ; extra == 'dev-complete'
-  - pytest-sugar ; extra == 'dev-complete'
-  - pytest-xdist ; extra == 'dev-complete'
-  - scriv ; extra == 'dev-complete'
-  - types-click ; extra == 'dev-complete'
-  - ipykernel ; extra == 'dev-extras'
-  - nox>=2024.4.15 ; extra == 'dev-extras'
-  - pytest-accept ; extra == 'dev-extras'
-  - autodocsumm ; extra == 'docs'
-  - myst-parser ; extra == 'docs'
-  - pyenchant ; extra == 'docs'
-  - sphinx-autobuild ; extra == 'docs'
-  - sphinx-book-theme ; extra == 'docs'
-  - sphinx-click ; extra == 'docs'
-  - sphinx-copybutton ; extra == 'docs'
-  - sphinx>=5.3.0 ; extra == 'docs'
-  - sphinxcontrib-spelling ; extra == 'docs'
-  - mypy>=1.10.1 ; extra == 'mypy'
-  - nbval ; extra == 'nbval'
-  - pytest ; extra == 'test'
-  - pytest-cov ; extra == 'test'
-  - pytest-sugar ; extra == 'test'
-  - pytest-xdist ; extra == 'test'
-  - pre-commit ; extra == 'tools'
-  - scriv ; extra == 'tools'
-  - packaging ; extra == 'typing'
-  - pytest ; extra == 'typing'
-  - types-click ; extra == 'typing'
-  - packaging ; extra == 'uvxrun'
-  - conda-lock>=2.5.5 ; extra == 'uvxrun-tools'
-  - grayskull>=2.5.3 ; extra == 'uvxrun-tools'
-  - mypy>=1.10.1 ; extra == 'uvxrun-tools'
-  - nbqa>=1.8.4 ; extra == 'uvxrun-tools'
-  - pyright>=1.1.381 ; extra == 'uvxrun-tools'
-  - twine>=5.0.0 ; extra == 'uvxrun-tools'
-  requires_python: '>=3.8,<3.14'
 - conda: https://prefix.dev/conda-forge/noarch/pysocks-1.7.1-pyha55dd90_7.conda
   sha256: ba3b032fa52709ce0d9fd388f63d330a026754587a2f461117cac9ab73d8d0d8
   md5: 461219d1a5bd61342293efa2c0c90eac
@@ -1811,15 +1727,6 @@ packages:
   - pkg:pypi/requests?source=compressed-mapping
   size: 59263
   timestamp: 1755614348400
-- pypi: https://files.pythonhosted.org/packages/e3/30/3c4d035596d3cf444529e0b2953ad0466f6049528a879d27534700580395/rich-14.1.0-py3-none-any.whl
-  name: rich
-  version: 14.1.0
-  sha256: 536f5f1785986d6dbdea3c75205c473f970777b4a0d6c6dd1b696aa05a3fa04f
-  requires_dist:
-  - ipywidgets>=7.5.1,<9 ; extra == 'jupyter'
-  - markdown-it-py>=2.2.0
-  - pygments>=2.13.0,<3.0.0
-  requires_python: '>=3.8.0'
 - conda: https://prefix.dev/conda-forge/noarch/roman-numerals-py-3.1.0-pyhd8ed1ab_0.conda
   sha256: 0116a9ca9bf3487e18979b58b2f280116dba55cb53475af7a6d835f7aa133db8
   md5: 5f0f24f8032c2c1bb33f59b75974f5fc
@@ -1873,11 +1780,6 @@ packages:
   - pkg:pypi/ruff?source=hash-mapping
   size: 10067487
   timestamp: 1757556746397
-- pypi: https://files.pythonhosted.org/packages/e0/f9/0595336914c5619e5f28a1fb793285925a8cd4b432c9da0a987836c7f822/shellingham-1.5.4-py2.py3-none-any.whl
-  name: shellingham
-  version: 1.5.4
-  sha256: 7ecfff8f2fd72616f7481040475a65b2bf8af90a56c89140852d1120324e8686
-  requires_python: '>=3.7'
 - conda: https://prefix.dev/conda-forge/noarch/snowballstemmer-3.0.1-pyhd8ed1ab_0.conda
   sha256: 17007a4cfbc564dc3e7310dcbe4932c6ecb21593d4fec3c68610720f19e73fb2
   md5: 755cf22df8693aa0d1aec1c123fa5863
@@ -2101,16 +2003,6 @@ packages:
   - pkg:pypi/tomli?source=compressed-mapping
   size: 21238
   timestamp: 1753796677376
-- pypi: https://files.pythonhosted.org/packages/1e/fa/6473c00b5eb26a2ba427813107699d3e6f4e1a4afad3f7494b17bdef3422/typer-0.19.1-py3-none-any.whl
-  name: typer
-  version: 0.19.1
-  sha256: 914b2b39a1da4bafca5f30637ca26fa622a5bf9f515e5fdc772439f306d5682a
-  requires_dist:
-  - click>=8.0.0
-  - typing-extensions>=3.7.4.3
-  - shellingham>=1.3.0
-  - rich>=10.11.0
-  requires_python: '>=3.7'
 - conda: https://prefix.dev/conda-forge/noarch/typing-extensions-4.15.0-h396c80c_0.conda
   sha256: 7c2df5721c742c2a47b2c8f960e718c930031663ac1174da67c1ed5999f7938c
   md5: edd329d7d3a4ab45dcf905899a7a6115

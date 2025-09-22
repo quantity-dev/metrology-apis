@@ -17,6 +17,8 @@ lint = [
   "numpydoc>=1.9.0,<2",
   "lefthook>=1.12.4,<2",
 ]
+dev = ["pyproject2conda>=0.12,<0.13"]
+
 
 [tool.uv]
 default-groups = ["runtime"]
@@ -29,7 +31,7 @@ default-envs = ["lint"]
 # Render the base environment without any optional groups.
 
 [tool.pyproject2conda.envs.lint]
-extras-or-groups = ["lint"]
+extras-or-groups = ["lint", "dev"]
 
 [build-system]
 build-backend = "hatchling.build"
@@ -59,8 +61,6 @@ mypy = ">=1.18,<2"
 numpydoc = ">=1.9.0,<2"
 lefthook = ">=1.12.4,<2"
 
-[tool.pixi.feature.lint.pypi-dependencies]
-pyproject2conda = ">=0.12,<0.13"
 [tool.pixi.feature.lint.tasks]
 hooks = { cmd = "lefthook install", description = "Install pre-commit hooks" }
 lefthook = { cmd = "lefthook", description = "Run lefthook" }
@@ -76,7 +76,6 @@ taplo = { cmd = "taplo fmt", description = "Format TOML with taplo" }
 
 [tool.pixi.environments]
 lint = ["lint"]
-
 
 [tool.pixi.package.build.backend]
 name = "pixi-build-python"
