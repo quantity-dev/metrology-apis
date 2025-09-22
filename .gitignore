@@ -6,3 +6,6 @@ __pycache__
 
 .mypy_cache
 .ruff_cache
+
+# MacOS files
+.DS_Store

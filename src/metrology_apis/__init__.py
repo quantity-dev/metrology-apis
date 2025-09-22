@@ -177,10 +177,14 @@ class Dimension(Protocol):
     ...     def __mul__(self, other):
     ...         keys = self._dims.keys() | other._dims.keys()
     ...         return Dimensions(**{k: self._dims.get(k, 0) + other._dims.get(k, 0) for k in keys})
+    ...    def __rmul__(self, other):
+    ...        return self.__mul__(other)
     ...
     ...     def __truediv__(self, other):
     ...         keys = self._dims.keys() | other._dims.keys()
     ...         return Dimensions(**{k: self._dims.get(k, 0) - other._dims.get(k, 0) for k in keys})
+    ...     def __rtruediv__(self, other):
+    ...         return Dimensions(**{k: other._dims.get(k, 0) - self._dims.get(k, 0) for k in keys})
     ...
     ...     def __pow__(self, power: int):
     ...         return Dimensions(**{k: v * power for k, v in self._dims.items()})
@@ -188,9 +192,21 @@ class Dimension(Protocol):
     ...     def __repr__(self):
     ...         return "Dimensions(" + ", ".join(f"{k}={v}" for k, v in self._dims.items() if v != 0) + ")"
 
+    We can check that the `Dimensions` class conforms to the `Dimension` protocol. This check works both on the class and instance level.
+
+    >>> issubclass(Dimensions, Dimension)
+    True
+
+    Now let's create a `Dimensions` instance and check if it conforms to the `Dimension` protocol.
+
     >>> length = Dimensions(L=1)
     >>> print(length)
     Dimensions(L=1)
+
+    >>> isinstance(length, Dimension)
+    True
+
+    As indicated by the `Dimension` protocol, we can perform arithmetic operations on `Dimensions` instances.
 
     >>> area = length * length
     >>> print(area)
