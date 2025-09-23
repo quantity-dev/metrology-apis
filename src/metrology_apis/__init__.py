@@ -148,6 +148,81 @@ class Dimension(Protocol):
     A `Protocol` for metrology-aware Dimension objects.
 
     A Dimension represents a physical quantity's dimensionality, such as length, mass, or time.
+
+    Examples
+    --------
+    In this example, we create a simple Dimension class and demonstrate its usage.
+
+    >>> def asdimension(x):
+    ...     if isinstance(x, DemoDimension):
+    ...         return x
+    ...     if hasattr(x, '__metrology_namespace__'):
+    ...         mx = x.__metrology_namespace__()
+    ...         if hasattr(mx, 'asdimension'):
+    ...             return mx.asdimension(x)
+    ...     raise TypeError(f"Cannot convert {x!r} to DemoDimension")
+    ...
+    >>> class DemoDimension:
+    ...     def __init__(self, **dims: float):
+    ...         self._dims = dims
+    ...
+    ...     def __metrology_namespace__(self, /, *, api_version = None):
+    ...         from types import SimpleNamespace
+    ...         return SimpleNamespace(
+    ...             asdimension = asdimension,
+    ...             asunit = lambda x: x,
+    ...             asquantity = lambda x, unit: (x, unit)
+    ...         )
+    ...
+    ...     def __mul__(self, other):
+    ...         keys = self._dims.keys() | other._dims.keys()
+    ...         return DemoDimension(**{k: self._dims.get(k, 0) + other._dims.get(k, 0) for k in keys})
+    ...    def __rmul__(self, other):
+    ...        return self.__mul__(other)
+    ...
+    ...     def __truediv__(self, other):
+    ...         keys = self._dims.keys() | other._dims.keys()
+    ...         return DemoDimension(**{k: self._dims.get(k, 0) - other._dims.get(k, 0) for k in keys})
+    ...     def __rtruediv__(self, other):
+    ...         return DemoDimension(**{k: other._dims.get(k, 0) - self._dims.get(k, 0) for k in keys})
+    ...
+    ...     def __pow__(self, power: int):
+    ...         return DemoDimension(**{k: v * power for k, v in self._dims.items()})
+    ...
+    ...     def __repr__(self):
+    ...         return "DemoDimension(" + ", ".join(f"{k}={v}" for k, v in self._dims.items() if v != 0) + ")"
+
+    We can check that the `DemoDimension` class conforms to the `Dimension` protocol. This check works both on the class and instance level.
+
+    >>> issubclass(DemoDimension, Dimension)
+    True
+
+    Now let's create a `DemoDimension` instance and check if it conforms to the `Dimension` protocol.
+
+    >>> length = DemoDimension(L=1)
+    >>> print(length)
+    DemoDimension(L=1)
+
+    >>> isinstance(length, Dimension)
+    True
+
+    As indicated by the `Dimension` protocol, we can perform arithmetic operations on `DemoDimension` instances.
+
+    >>> area = length * length
+    >>> print(area)
+    DemoDimension(L=2)
+
+    >>> volume = length ** 3
+    >>> print(volume)
+    DemoDimension(L=3)
+
+    >>> time = DemoDimension(T=1)
+    >>> print(time)
+    DemoDimension(T=1)
+
+    >>> speed = length / time
+    >>> print(speed)
+    DemoDimension(L=1, T=-1)
     """
 
     # NOTE: can't inherit from HasMetrologyNamespace because of `Self` in the
