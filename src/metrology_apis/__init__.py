@@ -343,11 +343,6 @@ class Quantity[V: VT = VT, U: UT = UT, D: DT = DT](Protocol):
         other: op.JustInt | op.JustFloat,
         /,
     ) -> "Quantity[R, U, D]": ...
-    def __rpow__[R](
-        self: "Quantity[op.CanRPow[op.JustInt | op.JustFloat, R], U, D]",
-        other: op.JustInt | op.JustFloat,
-        /,
-    ) -> "Quantity[R, U, D]": ...
 
 
 Quantity.__metrology_namespace__.__doc__ = (
